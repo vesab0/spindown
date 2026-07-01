@@ -55,7 +55,7 @@ export default function Hero() {
 
   return (
     <section
-      className="flex flex-col items-center bg-[#60BAFF] min-h-[calc(100vh-64px)] pt-10 pb-12 px-4"
+      className="flex flex-col items-center bg-[#60BAFF] min-h-[calc(100vh-64px)] pt-10 pb-4 px-4"
     >
       {/* Title */}
       <img
@@ -67,11 +67,12 @@ export default function Hero() {
 
       {/* 3D D20 */}
       <div
-        className="w-[500px] h-[500px] max-w-[95vw] max-h-[95vw] -mt-16 cursor-grab active:cursor-grabbing"
+        className="dice-canvas -mt-32 -mb-20 cursor-grab active:cursor-grabbing"
+        style={{ width: 600, height: 600, marginLeft: 'auto', marginRight: 'auto' }}
         onMouseMove={handleDiceMouseMove}
         onMouseLeave={handleDiceMouseLeave}
       >
-        <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
+        <Canvas camera={{ position: [0, 0, 6], fov: 50 }}>
           <ambientLight intensity={0.5} />
           <directionalLight position={[4, 6, 5]} intensity={1.4} />
           <directionalLight position={[-4, -3, 2]} intensity={0.3} color="#ffcccc" />
@@ -80,7 +81,7 @@ export default function Hero() {
       </div>
 
       {/* Date */}
-      <p className="font-akshar text-white text-[28px] font-semibold tracking-wide mt-6">
+      <p className="font-akshar text-white text-[28px] font-semibold tracking-wide mt-2">
         07 - 09 August &nbsp;|&nbsp; Prishtina Hacker Space
       </p>
 

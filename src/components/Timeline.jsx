@@ -31,7 +31,7 @@ export default function Timeline() {
 
       {/* flossk × anibar header */}
       <div className="flex items-center justify-center gap-6 mb-16">
-        <img src="/flossk-logo.png" alt="flossk" className="h-24 object-contain" draggable={false} />
+        <img src="/flossk-logo.png" alt="flossk" className="h-20 object-contain" draggable={false} />
         <span className="text-[#1a1a1a] text-6xl font-light select-none">×</span>
         <img src="/anibar-logo.png" alt="anibar" className="h-32 object-contain" draggable={false} />
       </div>
