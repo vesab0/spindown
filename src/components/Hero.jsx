@@ -53,9 +53,26 @@ export default function Hero() {
     lastMousePos.current = null
   }, [])
 
+  const handleDiceTouchMove = useCallback((e) => {
+    e.preventDefault()
+    const touch = e.touches[0]
+    const rect = e.currentTarget.getBoundingClientRect()
+    const x = touch.clientX - rect.left
+    const y = touch.clientY - rect.top
+    if (lastMousePos.current) {
+      mouseDelta.current.x += (x - lastMousePos.current.x) / rect.width
+      mouseDelta.current.y += (y - lastMousePos.current.y) / rect.height
+    }
+    lastMousePos.current = { x, y }
+  }, [])
+
+  const handleDiceTouchEnd = useCallback(() => {
+    lastMousePos.current = null
+  }, [])
+
   return (
     <section
-      className="flex flex-col items-center bg-[#60BAFF] min-h-[calc(100vh-64px)] pt-10 pb-4 px-4"
+      className="flex flex-col items-center bg-[#60BAFF] md:min-h-[calc(100vh-64px)] pt-10 pb-8 md:pb-4 px-4"
     >
       {/* Title */}
       <img
@@ -67,10 +84,11 @@ export default function Hero() {
 
       {/* 3D D20 */}
       <div
-        className="dice-canvas -mt-32 -mb-20 cursor-grab active:cursor-grabbing"
-        style={{ width: 600, height: 600, marginLeft: 'auto', marginRight: 'auto' }}
+        className="dice-canvas -mt-16 sm:-mt-24 md:-mt-32 -mb-8 sm:-mb-14 md:-mb-20 cursor-grab active:cursor-grabbing mx-auto w-[280px] h-[280px] sm:w-[420px] sm:h-[420px] md:w-[600px] md:h-[600px]"
         onMouseMove={handleDiceMouseMove}
         onMouseLeave={handleDiceMouseLeave}
+        onTouchMove={handleDiceTouchMove}
+        onTouchEnd={handleDiceTouchEnd}
       >
         <Canvas camera={{ position: [0, 0, 6], fov: 50 }}>
           <ambientLight intensity={0.5} />
@@ -81,7 +99,7 @@ export default function Hero() {
       </div>
 
       {/* Date */}
-      <p className="font-akshar text-white text-[28px] font-semibold tracking-wide mt-2">
+      <p className="font-akshar text-white text-[18px] sm:text-[22px] md:text-[28px] font-semibold tracking-wide mt-2 text-center px-2">
         07 - 09 August &nbsp;|&nbsp; Prishtina Hacker Space
       </p>
 
@@ -90,9 +108,9 @@ export default function Hero() {
         href="#"
         onClick={handleApply}
         className="
-          font-akshar font-bold tracking-[0.14em] text-[22px] text-white
+          font-akshar font-bold tracking-[0.14em] text-[18px] sm:text-[20px] md:text-[22px] text-white
           bg-[#D93A44] border-[3px] border-[#651014]
-          px-20 py-4 mt-5 rounded-sm
+          px-12 sm:px-16 md:px-20 py-3 md:py-4 mt-5 rounded-sm
           shadow-[0_5px_0_#651014]
           hover:-translate-y-[2px] hover:shadow-[0_7px_0_#651014]
           active:translate-y-[2px] active:shadow-[0_2px_0_#651014]
