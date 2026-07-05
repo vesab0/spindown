@@ -6,9 +6,6 @@ html {
   zoom: 0.8;
 }
 
-/* r3f measures canvas via getBoundingClientRect (returns zoomed size),
-   then sets canvas.style to that smaller value, leaving it top-left aligned.
-   This forces it to fill the container so the dice renders centered. */
 .dice-canvas canvas {
   width: 100% !important;
   height: 100% !important;

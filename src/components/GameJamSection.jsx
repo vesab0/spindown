@@ -1,6 +1,6 @@
 export default function GameJamSection() {
   return (
-    <section className="bg-black py-20 px-6">
+    <section className="bg-[#1a1a1a] py-20 px-6">
       <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-start gap-16">
 
         {/* Poster */}
