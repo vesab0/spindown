@@ -2,15 +2,6 @@ import { useRef, useCallback } from 'react'
 import { Canvas } from '@react-three/fiber'
 import D20 from './D20'
 
-function LinkedInIcon() {
-  return (
-    <svg width="52" height="52" viewBox="0 0 36 36" fill="none">
-      <rect width="36" height="36" rx="5" fill="#1a1a1a" />
-      <path d="M13.5 14.5H10.5V25.5H13.5V14.5ZM12 13.25C13.1 13.25 14 12.35 14 11.25C14 10.15 13.1 9.25 12 9.25C10.9 9.25 10 10.15 10 11.25C10 12.35 10.9 13.25 12 13.25ZM25.5 25.5H22.5V19.75C22.5 17.95 21.85 17 20.5 17C19.05 17 18.5 18.05 18.5 19.75V25.5H15.5V14.5H18.5V15.85C19.1 14.9 20.2 14.25 21.75 14.25C24 14.25 25.5 15.75 25.5 18.5V25.5Z" fill="white" />
-    </svg>
-  )
-}
-
 function DiscordIcon() {
   return (
     <svg width="52" height="52" viewBox="0 0 36 36" fill="none">
@@ -34,8 +25,15 @@ export default function Hero() {
   const lastMousePos = useRef(null)
   const spinKick = useRef(null)
 
-  const handleApply = useCallback(() => {
+  const APPLY_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScUqD71ynm_7hL7Pwu4xqhua9lk6s2dd9iFQ9NaQ6B5MPvfbQ/viewform?usp=publish-editor'
+
+  const handleApply = useCallback((e) => {
+    e.preventDefault()
     spinKick.current = { x: (Math.random() - 0.5) * 6, y: 6 + Math.random() * 4 }
+  }, [])
+
+  const handleSpinSettle = useCallback(() => {
+    window.location.href = APPLY_FORM_URL
   }, [])
 
   const handleDiceMouseMove = useCallback((e) => {
@@ -94,7 +92,7 @@ export default function Hero() {
           <ambientLight intensity={0.5} />
           <directionalLight position={[4, 6, 5]} intensity={1.4} />
           <directionalLight position={[-4, -3, 2]} intensity={0.3} color="#ffcccc" />
-          <D20 mouseDelta={mouseDelta} spinKick={spinKick} />
+          <D20 mouseDelta={mouseDelta} spinKick={spinKick} onSpinSettle={handleSpinSettle} />
         </Canvas>
       </div>
 
@@ -124,13 +122,14 @@ export default function Hero() {
       {/* Social Icons */}
       <div className="flex items-center gap-5 mt-7">
         {[
-          { label: 'LinkedIn', Icon: LinkedInIcon },
-          { label: 'Discord', Icon: DiscordIcon },
-          { label: 'Instagram', Icon: InstagramIcon },
-        ].map(({ label, Icon }) => (
+          { label: 'Discord', Icon: DiscordIcon, href: 'https://discord.gg/rzBhAQ76jg' },
+          { label: 'Instagram', Icon: InstagramIcon, href: 'https://www.instagram.com/spindown_games/?utm_source=ig_web_button_share_sheet' },
+        ].map(({ label, Icon, href }) => (
           <a
             key={label}
-            href="#"
+            href={href}
+            target={href.startsWith('http') ? '_blank' : undefined}
+            rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
             aria-label={label}
             className="hover:scale-110 transition-transform duration-150"
           >

@@ -2,11 +2,12 @@ import { useRef, useMemo } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
-export default function D20({ mouseDelta, spinKick }) {
+export default function D20({ mouseDelta, spinKick, onSpinSettle }) {
   const groupRef = useRef()
   const rot = useRef({ x: -2.58, y: -1.58 })
   const mouseVel = useRef({ x: 0, y: 0 })
   const kickVel = useRef({ x: 0, y: 0 })
+  const spinning = useRef(false)
 
   const geo = useMemo(() => new THREE.IcosahedronGeometry(1.9, 0), [])
   const edgesGeo = useMemo(() => new THREE.EdgesGeometry(geo), [geo])
@@ -19,9 +20,19 @@ export default function D20({ mouseDelta, spinKick }) {
       kickVel.current.x += spinKick.current.x
       kickVel.current.y += spinKick.current.y
       spinKick.current = null
+      spinning.current = true
     }
     kickVel.current.x *= 0.93
     kickVel.current.y *= 0.93
+
+    // Fire once when a button-triggered spin has settled
+    if (spinning.current) {
+      const speed = Math.abs(kickVel.current.x) + Math.abs(kickVel.current.y)
+      if (speed < 0.05) {
+        spinning.current = false
+        onSpinSettle?.()
+      }
+    }
 
     // Mouse delta — fast damp for snappy feel
     const sensitivity = 2

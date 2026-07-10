@@ -3,9 +3,8 @@ export default function Footer() {
     {
       title: 'Navigate',
       links: [
-        { label: 'Resources', href: '#' },
-        { label: 'Games', href: '#' },
-        { label: 'People', href: '#' },
+        { label: 'Resources', href: '#', disabled: true },
+        { label: 'Games', href: '#', disabled: true },
       ],
     },
     {
@@ -19,9 +18,8 @@ export default function Footer() {
     {
       title: 'Social',
       links: [
-        { label: 'LinkedIn', href: '#' },
-        { label: 'Discord', href: '#' },
-        { label: 'Instagram', href: '#' },
+        { label: 'Discord', href: 'https://discord.gg/rzBhAQ76jg' },
+        { label: 'Instagram', href: 'https://www.instagram.com/spindown_games/?utm_source=ig_web_button_share_sheet' },
       ],
     },
   ]
@@ -42,13 +40,15 @@ export default function Footer() {
         <div className="flex gap-8 md:gap-12">
           {columns.map(({ title, links }) => (
             <div key={title} className="flex flex-col gap-1">
-              {links.map(({ label, href }) => (
+              {links.map(({ label, href, disabled }) => (
                 <a
                   key={label}
                   href={href}
                   target={href.startsWith('http') ? '_blank' : undefined}
                   rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="font-akshar text-white text-[15px] md:text-[18px] font-bold tracking-wide hover:text-[#D93A44] transition-colors no-underline"
+                  aria-disabled={disabled}
+                  onClick={disabled ? (e) => e.preventDefault() : undefined}
+                  className={`font-akshar text-white text-[15px] md:text-[18px] font-bold tracking-wide transition-colors no-underline ${disabled ? 'opacity-40 cursor-not-allowed' : 'hover:text-[#D93A44]'}`}
                 >
                   {label}
                 </a>

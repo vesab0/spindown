@@ -1,5 +1,10 @@
 import { useState } from 'react'
 
+const NAV_ITEMS = [
+  { label: 'Resources', disabled: true },
+  { label: 'Games', disabled: true },
+]
+
 export default function Navbar() {
   const [open, setOpen] = useState(false)
 
@@ -10,13 +15,15 @@ export default function Navbar() {
 
         {/* Desktop links */}
         <ul className="hidden md:flex items-center gap-10 list-none">
-          {['Resources', 'Games', 'People'].map((item) => (
-            <li key={item}>
+          {NAV_ITEMS.map(({ label, disabled }) => (
+            <li key={label}>
               <a
                 href="#"
-                className="font-akshar text-white text-[18px] font-semibold tracking-wide hover:text-[#D93A44] transition-colors no-underline"
+                aria-disabled={disabled}
+                onClick={disabled ? (e) => e.preventDefault() : undefined}
+                className={`font-akshar text-white text-[18px] font-semibold tracking-wide transition-colors no-underline ${disabled ? 'opacity-40 cursor-not-allowed' : 'hover:text-[#D93A44]'}`}
               >
-                {item}
+                {label}
               </a>
             </li>
           ))}
@@ -37,14 +44,15 @@ export default function Navbar() {
       {/* Mobile dropdown */}
       {open && (
         <ul className="md:hidden list-none bg-[#1a1a1a] border-t border-white/10 px-6 py-4 flex flex-col gap-4">
-          {['Resources', 'Games', 'People'].map((item) => (
-            <li key={item}>
+          {NAV_ITEMS.map(({ label, disabled }) => (
+            <li key={label}>
               <a
                 href="#"
-                onClick={() => setOpen(false)}
-                className="font-akshar text-white text-[18px] font-semibold tracking-wide hover:text-[#D93A44] transition-colors no-underline"
+                aria-disabled={disabled}
+                onClick={disabled ? (e) => e.preventDefault() : () => setOpen(false)}
+                className={`font-akshar text-white text-[18px] font-semibold tracking-wide transition-colors no-underline ${disabled ? 'opacity-40 cursor-not-allowed' : 'hover:text-[#D93A44]'}`}
               >
-                {item}
+                {label}
               </a>
             </li>
           ))}
