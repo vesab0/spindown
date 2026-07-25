@@ -3,7 +3,7 @@ export default function Footer() {
     {
       title: 'Navigate',
       links: [
-        { label: 'Resources', href: '#', disabled: true },
+        { label: 'Resources', href: '#resources' },
         { label: 'Games', href: '#', disabled: true },
       ],
     },
