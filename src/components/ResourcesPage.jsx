@@ -360,7 +360,7 @@ function AssetGallery({ assets, right }) {
   const active = assets[index]
 
   const thumbs = (
-    <div dir={right ? 'rtl' : undefined} className="grid grid-cols-3 gap-3 sm:grid-cols-4 lg:h-[520px] lg:grid-cols-3 lg:grid-rows-4 lg:gap-4">
+    <div dir={right ? 'rtl' : undefined} className="order-2 grid grid-cols-3 gap-3 sm:grid-cols-4 lg:order-1 lg:h-[520px] lg:grid-cols-3 lg:grid-rows-4 lg:gap-4">
       {assets.map((asset, i) => (
         <button
           key={asset.href}
@@ -386,7 +386,7 @@ function AssetGallery({ assets, right }) {
   )
 
   const preview = (
-    <div className="flex flex-col gap-4 bg-white/[0.03] p-5 shadow-[0_8px_0_#651014] md:p-6 lg:h-[520px]">
+    <div className="order-1 flex flex-col gap-4 bg-white/[0.03] p-5 shadow-[0_8px_0_#651014] md:p-6 lg:order-2 lg:h-[520px]">
       <div className="flex min-h-[280px] flex-1 items-center justify-center bg-[#0d0d0d] p-4 lg:min-h-0">
         <img
           src={active.image}
@@ -550,7 +550,7 @@ function SectionDetailPage({ section }) {
   }, [section.id])
 
   return (
-    <main className="bg-[#1a1a1a]">
+    <main className="bg-[#1a1a1a]" style={{ zoom: 0.9 }}>
       <section className="px-5 pt-14 md:px-10 md:pt-16">
         <div className="mx-auto max-w-7xl">
           <a
@@ -584,7 +584,7 @@ export default function ResourcesPage() {
   }
 
   return (
-    <main className="bg-[#1a1a1a]">
+    <main className="bg-[#1a1a1a]" style={{ zoom: 0.9 }}>
       <SideNav />
 
       <section className="px-5 py-14 md:px-10 md:py-16">
