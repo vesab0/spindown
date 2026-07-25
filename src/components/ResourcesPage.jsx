@@ -181,14 +181,14 @@ const artGroups = [
     group: 'Watch these first',
     items: [
       { title: 'MVP art', desc: 'Make the minimum art your game actually needs, fast.', href: 'https://www.youtube.com/watch?v=0FbE1jet_DM', image: 'https://img.youtube.com/vi/0FbE1jet_DM/hqdefault.jpg' },
-      { title: 'Fundamentals of game animation', desc: 'The core principles behind animation that feels good.', href: 'https://www.youtube.com/watch?v=CrOGr8i575k', image: 'https://img.youtube.com/vi/CrOGr8i575k/hqdefault.jpg' },
+      { title: 'Art as a utility', desc: 'Treat art as a tool that serves the game, not decoration.', href: 'https://www.youtube.com/watch?v=IgJBLXBG1Yc', image: 'https://img.youtube.com/vi/IgJBLXBG1Yc/hqdefault.jpg' },
       { title: 'Animating in Krita', desc: 'Get started animating from scratch in Krita.', href: 'https://www.youtube.com/watch?v=oXMCmiT_wxA', image: 'https://img.youtube.com/vi/oXMCmiT_wxA/hqdefault.jpg' },
     ],
   },
   {
     group: 'More tutorials',
     items: [
-      { title: 'Art as a utility', desc: 'Treat art as a tool that serves the game, not decoration.', href: 'https://www.youtube.com/watch?v=IgJBLXBG1Yc', image: 'https://img.youtube.com/vi/IgJBLXBG1Yc/hqdefault.jpg' },
+      { title: 'Fundamentals of game animation', desc: 'The core principles behind animation that feels good.', href: 'https://www.youtube.com/watch?v=CrOGr8i575k', image: 'https://img.youtube.com/vi/CrOGr8i575k/hqdefault.jpg' },
       { title: 'UI basics', desc: 'The fundamentals of laying out readable game UI.', href: 'https://www.youtube.com/watch?v=Xo5mzi3j204', image: 'https://img.youtube.com/vi/Xo5mzi3j204/hqdefault.jpg' },
       { title: 'What makes great UI', desc: 'GMTK on what separates good game UI from bad.', href: 'https://www.youtube.com/watch?v=4Bv45aPMGyI', image: 'https://img.youtube.com/vi/4Bv45aPMGyI/hqdefault.jpg' },
       { title: 'Pixel art starter', desc: "A beginner's guide to making your first pixel art.", href: 'https://www.youtube.com/watch?v=DKmrBUpd0yw', image: 'https://img.youtube.com/vi/DKmrBUpd0yw/hqdefault.jpg' },
@@ -445,7 +445,7 @@ function LearnSection({ id, title, intro, featured, groups, extraGroups = [], as
   ) : null
 
   const video = (
-    <div className="aspect-video w-full overflow-hidden bg-black shadow-[0_8px_0_#651014]">
+    <div className={`aspect-video w-full overflow-hidden bg-black shadow-[0_8px_0_#651014] ${right ? 'lg:order-2' : ''}`}>
       <iframe
         className="h-full w-full"
         src={`https://www.youtube.com/embed/${featured.videoId}${featured.start ? `?start=${featured.start}` : ''}`}
@@ -457,7 +457,7 @@ function LearnSection({ id, title, intro, featured, groups, extraGroups = [], as
   )
 
   const panel = (
-    <div className={`flex flex-col justify-center gap-3 bg-white/[0.03] p-6 md:p-8 ${right ? 'items-end text-right' : ''}`}>
+    <div className={`flex flex-col justify-center gap-3 bg-white/[0.03] p-6 md:p-8 ${right ? 'items-end text-right lg:order-1' : ''}`}>
       <span className="inline-flex w-fit bg-[#D93A44] px-3 py-1 font-akshar text-[13px] font-bold uppercase tracking-[0.14em] text-white">
         Start here
       </span>
@@ -493,7 +493,7 @@ function LearnSection({ id, title, intro, featured, groups, extraGroups = [], as
         </div>
 
         <div className={`mt-10 grid gap-6 lg:items-stretch ${right ? 'lg:grid-cols-[1fr_1.6fr]' : 'lg:grid-cols-[1.6fr_1fr]'}`}>
-          {right ? <>{panel}{video}</> : <>{video}{panel}</>}
+          {video}{panel}
         </div>
 
         <div className="mt-14 flex flex-col gap-12">
