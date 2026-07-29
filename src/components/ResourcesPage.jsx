@@ -29,7 +29,7 @@ function SideNav() {
   }, [])
 
   return (
-    <aside className="fixed left-3 top-1/2 z-40 hidden -translate-y-1/2 flex-col gap-4 lg:flex xl:left-6">
+    <aside className="fixed left-3 top-1/2 z-40 hidden -translate-y-1/2 flex-col gap-4 xl:flex xl:left-6">
       {navSections.map(({ id, label }) => {
         const isActive = active === id
         return (
