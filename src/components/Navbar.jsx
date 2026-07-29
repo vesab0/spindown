@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 const NAV_ITEMS = [
-  { label: 'Resources', href: '#resources' },
+  { label: 'Resources', href: 'resources' },
   { label: 'Games', disabled: true },
 ]
 

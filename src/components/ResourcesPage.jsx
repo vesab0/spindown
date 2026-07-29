@@ -480,7 +480,7 @@ function LearnSection({ id, title, intro, featured, groups, extraGroups = [], as
             </h2>
             {showViewAll && (
               <a
-                href={`#resources/${id}`}
+                href={`resources/${id}`}
                 className="shrink-0 font-akshar text-[17px] font-bold uppercase tracking-[0.14em] text-[#D93A44] hover:text-white md:text-[20px]"
               >
                 View all →
@@ -554,7 +554,7 @@ function SectionDetailPage({ section }) {
       <section className="px-5 pt-14 md:px-10 md:pt-16">
         <div className="mx-auto max-w-7xl">
           <a
-            href="#resources"
+            href="resources"
             className="inline-flex items-center gap-2 font-akshar text-[18px] font-bold uppercase tracking-[0.14em] text-[#60BAFF] hover:text-white"
           >
             ← All resources
@@ -576,7 +576,7 @@ export default function ResourcesPage() {
     return () => window.removeEventListener('hashchange', onHashChange)
   }, [])
 
-  const detailId = hash.startsWith('#resources/') ? hash.slice('#resources/'.length) : null
+  const detailId = hash.startsWith('resources/') ? hash.slice('resources/'.length) : null
   const detailSection = learnSections.find((section) => section.id === detailId)
 
   if (detailSection) {
