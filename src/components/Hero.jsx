@@ -80,7 +80,7 @@ export default function Hero() {
       />
 
       <div
-        className="dice-canvas -mt-16 sm:-mt-24 md:-mt-32 -mb-8 sm:-mb-14 md:-mb-20 cursor-grab active:cursor-grabbing mx-auto w-[280px] h-[280px] sm:w-[420px] sm:h-[420px] md:w-[600px] md:h-[600px]"
+        className="dice-canvas -mt-16 sm:-mt-24 md:-mt-32 -mb-15 sm:-mb-14 md:-mb-20 cursor-grab active:cursor-grabbing mx-auto w-[280px] h-[280px] sm:w-[420px] sm:h-[420px] md:w-[600px] md:h-[600px]"
         onMouseMove={handleDiceMouseMove}
         onMouseLeave={handleDiceMouseLeave}
         onTouchMove={handleDiceTouchMove}
@@ -95,7 +95,7 @@ export default function Hero() {
       </div>
 
 
-      <div className="flex items-center gap-5 mt-28">
+      <div className="flex items-center gap-5 mt-15 md:mt-28">
         {[
           { label: 'Discord', Icon: DiscordIcon, href: 'https://discord.gg/rzBhAQ76jg' },
           { label: 'Instagram', Icon: InstagramIcon, href: 'https://www.instagram.com/spindown_games/?utm_source=ig_web_button_share_sheet' },
