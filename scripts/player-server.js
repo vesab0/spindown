@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.join(__dirname, '..')
-const GAMES_DIR = path.join(ROOT, 'games')
+const GAMES_DIR = path.join(ROOT, 'public', 'games')
 let PORT = process.env.PLAYER_PORT ? Number(process.env.PLAYER_PORT) : 5174
 
 function contentType(file) {

@@ -149,31 +149,7 @@ export default function GamesPage() {
     }
   }, [openGame])
 
-  async function probePlayerPort(start = 5174, end = 5180, path = '/Sola/') {
-    for (let port = start; port <= end; port += 1) {
-      const controller = new AbortController()
-      const timeout = setTimeout(() => controller.abort(), 1000)
-      try {
-        await fetch(`http://localhost:${port}${path}`, { method: 'GET', mode: 'no-cors', signal: controller.signal })
-        clearTimeout(timeout)
-        return `http://localhost:${port}${path}`
-      } catch (e) {
-        clearTimeout(timeout)
-      }
-    }
-    return null
-  }
-
-  const openPlayer = async (game) => {
-    if (game.id === 'sola') {
-      const host = await probePlayerPort()
-      if (host) {
-        setOpenGame({ ...game, entry: host })
-        return
-      }
-      setOpenGame({ ...game, entry: `/player/Sola/` })
-      return
-    }
+  const openPlayer = (game) => {
     setOpenGame(game)
   }
 

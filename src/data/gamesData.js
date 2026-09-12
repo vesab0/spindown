@@ -6,7 +6,7 @@ export const GAMES = [
     folder: '/games/Sola',
     entry: '/games/Sola/index.html',
     githubLink: 'https://github.com',
-    galleryFolder: '/TEST/',
+    galleryFolder: '/sola/',
     isWinner: true,
     winnerReason: 'Game Jam Champion — Selected for exceptional design, immersive atmosphere, and innovative puzzle mechanics.',
     teamMembers: [
@@ -62,4 +62,5 @@ export const GAMES = [
       { name: 'Alice Williams', role: 'Audio Engineer' },
     ],
   },
+  
 ]
