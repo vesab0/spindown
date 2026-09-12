@@ -61,6 +61,7 @@ export default function GamesPage() {
   const [loadedGalleries, setLoadedGalleries] = useState({})
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [controlsVisible, setControlsVisible] = useState(true)
+  const [isTouchDevice, setIsTouchDevice] = useState(false)
   const controlsTimerRef = useRef(null)
   const exitingFullscreenRef = useRef(false)
   const gameModalRef = useRef(null)
@@ -75,6 +76,18 @@ export default function GamesPage() {
       setLoadedGalleries(galleries)
     }
     loadAllGalleries()
+  }, [])
+
+  useEffect(() => {
+    const mq = window.matchMedia('(hover: none)')
+    const update = () => setIsTouchDevice(mq.matches)
+    update()
+    if (mq.addEventListener) {
+      mq.addEventListener('change', update)
+      return () => mq.removeEventListener('change', update)
+    }
+    mq.addListener(update)
+    return () => mq.removeListener(update)
   }, [])
 
   const wakeControls = () => {
@@ -157,8 +170,8 @@ export default function GamesPage() {
     <main className="bg-[#1a1a1a] px-5 py-14 md:px-10 md:py-16">
       <div className="mx-auto max-w-7xl text-white">
         <p className="font-akshar text-[18px] font-bold uppercase tracking-[0.18em] text-[#60BAFF] md:text-[22px]">Spindown Game Jam</p>
-        <h1 className="font-akshar text-[56px] font-bold leading-[0.92] md:text-[72px]">Game Jam Games</h1>
-        <p className="mt-3 max-w-3xl font-akshar text-[20px] leading-tight text-white/70 md:text-[24px]">The 6 amazing games created during the Spindown Game Jam.</p>
+        <h1 className="font-akshar text-[44px] font-bold leading-[0.92] sm:text-[56px] md:text-[72px]">Game Jam Games</h1>
+        <p className="mt-3 max-w-3xl font-akshar text-[18px] leading-tight text-white/70 sm:text-[20px] md:text-[24px]">Play the 6 amazing games created during the Spindown Game Jam.</p>
 
         <div className="mt-10 space-y-14">
           {GAMES.map((game, gIndex) => {
@@ -168,9 +181,9 @@ export default function GamesPage() {
             const isWinner = game.isWinner
 
             return (
-              <div key={game.id} className={`grid gap-6 p-6 ${isWinner ? 'bg-white/[0.05] border border-white/10' : 'bg-white/[0.03]'} ${isWinner ? 'md:grid-cols-1' : 'md:grid-cols-[1.7fr_1fr]'}`}>
+              <div key={game.id} className={`p-4 grid gap-6 sm:p-6 ${isWinner ? 'bg-white/[0.05] border border-white/10' : 'bg-white/[0.03]'} ${isWinner ? 'md:grid-cols-1' : 'md:grid-cols-[1.7fr_1fr]'}`}>
                 <div className="flex flex-col gap-4">
-                  <div className="relative bg-[#0d0d0d] shadow-[0_8px_0_#651014] overflow-hidden min-h-[340px]">
+                  <div className="relative bg-[#0d0d0d] shadow-[0_8px_0_#651014] overflow-hidden min-h-[200px] sm:min-h-[260px] md:min-h-[340px]">
                     <div className="absolute left-3 top-1/2 z-10 -translate-y-1/2">
                       <button
                         type="button"
@@ -198,13 +211,13 @@ export default function GamesPage() {
                     </div>
                   </div>
 
-                  <div className="mt-3 flex gap-3">
+                  <div className="mt-3 flex flex-wrap gap-3">
                     {gallery.map((t, i) => (
                       <button
                         key={t}
                         type="button"
                         onClick={() => setThumb(i)}
-                        className={`h-20 w-28 overflow-hidden bg-[#0d0d0d] transition-transform hover:-translate-y-0.5 ${i === current ? 'ring-4 ring-[#D93A44]' : ''}`}
+                        className={`h-16 w-24 overflow-hidden bg-[#0d0d0d] transition-transform hover:-translate-y-0.5 md:h-20 md:w-28 ${i === current ? 'ring-4 ring-[#D93A44]' : ''}`}
                       >
                         <Gallery item={t} w={400} h={240} />
                       </button>
@@ -219,7 +232,7 @@ export default function GamesPage() {
                         🏆 Game Jam Champion
                       </p>
                     )}
-                    <h2 className={`font-akshar font-bold leading-none text-white ${isWinner ? 'text-[40px] md:text-[48px]' : 'text-[28px] md:text-[34px]'}`}>{game.title}</h2>
+                    <h2 className={`font-akshar font-bold leading-none text-white ${isWinner ? 'text-[32px] sm:text-[40px] md:text-[48px]' : 'text-[28px] md:text-[34px]'}`}>{game.title}</h2>
                     
                     {isWinner && game.winnerReason && (
                       <p className="mt-3 font-akshar text-[16px] font-semibold leading-snug text-white">{game.winnerReason}</p>
@@ -247,11 +260,14 @@ export default function GamesPage() {
                     </div>
                   </div>
 
-                  <div className="mt-4 flex items-center gap-4">
+                  <div className="mt-4 flex flex-wrap items-center gap-4">
                     <button
                       type="button"
+                      disabled={isTouchDevice}
                       onClick={() => openPlayer(game)}
-                      className="bg-[#D93A44] px-6 py-3 font-akshar text-[18px] font-bold text-white transition-transform hover:-translate-y-0.5"
+                      className={`bg-[#D93A44] px-6 py-3 font-akshar text-[18px] font-bold text-white transition-transform ${
+                        isTouchDevice ? 'cursor-not-allowed opacity-40' : 'hover:-translate-y-0.5'
+                      }`}
                     >
                       Play
                     </button>
@@ -264,6 +280,11 @@ export default function GamesPage() {
                       View GitHub ↗
                     </a>
                   </div>
+                  {isTouchDevice && (
+                    <p className="mt-3 font-akshar text-[14px] leading-snug text-white/60">
+                      Play is only available on desktop. Please visit from a desktop device to play.
+                    </p>
+                  )}
                 </aside>
               </div>
             )
@@ -273,7 +294,7 @@ export default function GamesPage() {
 
       {openGame && (
         <div 
-          className="fixed inset-0 z-50 grid place-items-center bg-black/75 p-6"
+          className="fixed inset-0 z-50 grid place-items-center bg-black/75 p-4 sm:p-6"
           onClick={closePlayer}
         >
           <div 
