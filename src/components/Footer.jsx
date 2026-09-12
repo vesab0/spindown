@@ -4,15 +4,15 @@ export default function Footer() {
       title: 'Navigate',
       links: [
         { label: 'Resources', href: '#resources' },
-        { label: 'Games', href: '#', disabled: true },
+        { label: 'Games', href: '#games' },
       ],
     },
     {
       title: 'Partners',
       links: [
-        { label: 'anibar.org', href: 'https://anibar.org/' },
-        { label: 'flossk.org', href: 'https://flossk.org/' },
-        { label: 'kgia.al', href: 'https://kgia.al/' },
+        { label: 'FLOSSK', href: 'https://flossk.org/' },
+        { label: 'SFK', href: 'https://sfk.flossk.org/' },
+
       ],
     },
     {
@@ -28,7 +28,6 @@ export default function Footer() {
     <footer className="bg-[#1a1a1a] px-6 md:px-10 py-10 md:py-24">
       <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-14">
 
-        {/* Logo */}
         <img
           src="/spindown-logo.png"
           alt="Spindown"
@@ -36,7 +35,6 @@ export default function Footer() {
           draggable={false}
         />
 
-        {/* Link columns */}
         <div className="flex gap-8 md:gap-12">
           {columns.map(({ title, links }) => (
             <div key={title} className="flex flex-col gap-1">

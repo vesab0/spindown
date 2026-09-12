@@ -1,43 +1,40 @@
+import Eyebrow from './Eyebrow'
+import LabelValue from './LabelValue'
+
 export default function GameJamSection() {
   return (
-    <section className="bg-[#1a1a1a] py-20 px-6">
-      <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-start gap-16">
+    <section className="bg-[#1a1a1a] px-6 py-16 md:px-10 md:py-24">
+      <div className="mx-auto max-w-5xl">
+        <Eyebrow large>SPINDOWN GAME JAM</Eyebrow>
 
-        {/* Poster */}
-        <img
-          src="/gamejam-poster.png"
-          alt="Spindown Game Jam poster"
-          className="w-[400px] max-w-[85vw] flex-shrink-0"
-          style={{ boxShadow: '-8px 8px 0px #D93A44' }}
-          draggable={false}
-        />
+        <div className="mt-8 flex flex-col items-start gap-12 md:mt-12 md:flex-row md:items-center md:gap-16">
+          <img
+            src="/gamejam-poster.png"
+            alt="Spindown Game Jam poster"
+            className="w-[400px] max-w-[85vw] flex-shrink-0"
+            style={{ boxShadow: '-8px 8px 0px #D93A44' }}
+            draggable={false}
+          />
 
-        {/* Text */}
-        <div className="flex flex-col gap-6">
-          <p className="font-akshar text-white/80 text-[24px] font-bold leading-relaxed">
-            An event where creatives come together to imagine, design, and build a unique short experience based on a specific theme
-          </p>
-
-          <div className="flex flex-col gap-4 font-akshar text-[22px]">
-            <div>
-              <div className="font-bold text-white">Date</div>
-              <div className="text-white/60 font-normal">August 7 – 9, 2025 · Fri – Sun</div>
+          <div className="flex flex-col gap-6">
+            <p className="font-akshar text-[24px] font-bold leading-relaxed text-white/80">
+              An event organized in collaboration with Anibar Studios and KGIA where creatives came together to imagine,
+              design, and build a unique short experience based on a specific theme, ended with the creation of 6 amazing
+              games.
+            </p>
+            <div className="flex flex-col gap-4">
+              <LabelValue label="Date" value="August 7 – 9, 2026 · Fri – Sun" />
+              <LabelValue label="Venue" value="Prishtina Hackerspace" />
+              <LabelValue label="Theme" value="Running out" />
             </div>
-            <div>
-              <div className="font-bold text-white">Venue</div>
-              <div className="text-white/60 font-normal">Prishtina Hackerspace</div>
-            </div>
-            <div>
-              <div className="font-bold text-white">Format</div>
-              <div className="text-white/60 font-normal">In-person + remote-friendly</div>
-            </div>
-            <div>
-              <div className="font-bold text-white">Theme</div>
-              <div className="text-white/60 font-normal">To be revealed ;)</div>
-            </div>
+            <p className="font-akshar text-[20px] leading-tight text-white/75 md:text-[22px]">
+              Play the games{' '}
+              <a href="#games" className="font-bold text-[#D93A44] underline transition-opacity hover:opacity-70">
+                here
+              </a>
+            </p>
           </div>
         </div>
-
       </div>
     </section>
   )

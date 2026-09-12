@@ -72,7 +72,6 @@ export default function Hero() {
     <section
       className="flex flex-col items-center bg-[#60BAFF] md:min-h-[calc(100vh-64px)] pt-10 pb-8 md:pb-4 px-4"
     >
-      {/* Title */}
       <img
         src="/title.png"
         alt="SPINDOWN"
@@ -80,7 +79,6 @@ export default function Hero() {
         draggable={false}
       />
 
-      {/* 3D D20 */}
       <div
         className="dice-canvas -mt-16 sm:-mt-24 md:-mt-32 -mb-8 sm:-mb-14 md:-mb-20 cursor-grab active:cursor-grabbing mx-auto w-[280px] h-[280px] sm:w-[420px] sm:h-[420px] md:w-[600px] md:h-[600px]"
         onMouseMove={handleDiceMouseMove}
@@ -96,31 +94,8 @@ export default function Hero() {
         </Canvas>
       </div>
 
-      {/* Date */}
-      <p className="font-akshar text-white text-[18px] sm:text-[22px] md:text-[28px] font-semibold tracking-wide mt-2 text-center px-2">
-        07 - 09 August &nbsp;|&nbsp; Prishtina Hacker Space
-      </p>
 
-      {/* CTA Button */}
-      <a
-        href="#"
-        onClick={handleApply}
-        className="
-          font-akshar font-bold tracking-[0.14em] text-[18px] sm:text-[20px] md:text-[22px] text-white
-          bg-[#D93A44] border-[3px] border-[#651014]
-          px-12 sm:px-16 md:px-20 py-3 md:py-4 mt-5 rounded-sm
-          shadow-[0_5px_0_#651014]
-          hover:-translate-y-[2px] hover:shadow-[0_7px_0_#651014]
-          active:translate-y-[2px] active:shadow-[0_2px_0_#651014]
-          transition-all duration-100
-          no-underline inline-block
-        "
-      >
-        APPLY NOW
-      </a>
-
-      {/* Social Icons */}
-      <div className="flex items-center gap-5 mt-7">
+      <div className="flex items-center gap-5 mt-28">
         {[
           { label: 'Discord', Icon: DiscordIcon, href: 'https://discord.gg/rzBhAQ76jg' },
           { label: 'Instagram', Icon: InstagramIcon, href: 'https://www.instagram.com/spindown_games/?utm_source=ig_web_button_share_sheet' },

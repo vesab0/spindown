@@ -15,7 +15,6 @@ export default function D20({ mouseDelta, spinKick, onSpinSettle }) {
   useFrame(() => {
     if (!groupRef.current) return
 
-    // Button kick — slow damp so it keeps spinning
     if (spinKick.current) {
       kickVel.current.x += spinKick.current.x
       kickVel.current.y += spinKick.current.y
@@ -25,7 +24,6 @@ export default function D20({ mouseDelta, spinKick, onSpinSettle }) {
     kickVel.current.x *= 0.93
     kickVel.current.y *= 0.93
 
-    // Fire once when a button-triggered spin has settled
     if (spinning.current) {
       const speed = Math.abs(kickVel.current.x) + Math.abs(kickVel.current.y)
       if (speed < 0.05) {
@@ -34,7 +32,6 @@ export default function D20({ mouseDelta, spinKick, onSpinSettle }) {
       }
     }
 
-    // Mouse delta — fast damp for snappy feel
     const sensitivity = 2
     mouseVel.current.y += mouseDelta.current.x * sensitivity
     mouseVel.current.x += mouseDelta.current.y * sensitivity

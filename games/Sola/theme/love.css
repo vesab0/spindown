@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+}
+
+/* Fill the whole viewport (useful when embedded in an iframe) with no
+   love.js chrome around the game. */
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000;
+}
+
+h1,
+footer {
+    display: none;
+}
+
+/* the canvas *must not* have any border or padding, or mouse coords will be wrong */
+#canvas {
+    display: block;
+    border: 0px none;
+    visibility: hidden;
+}
+
+/* Keep the loading canvas centered over a black background. */
+#loadingCanvas {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    background-color: #000;
+}

@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 const NAV_ITEMS = [
   { label: 'Resources', href: '#resources' },
-  { label: 'Games', disabled: true },
+  { label: 'Games', href: '#games' },
 ]
 
 export default function Navbar() {
@@ -15,7 +15,6 @@ export default function Navbar() {
           <img src="/spindown-logo.png" alt="Spindown" className="h-[56px] w-auto object-contain" />
         </a>
 
-        {/* Desktop links */}
         <ul className="hidden md:flex items-center gap-10 list-none">
           {NAV_ITEMS.map(({ label, disabled, href }) => (
             <li key={label}>
@@ -31,7 +30,6 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Hamburger button */}
         <button
           className="md:hidden flex flex-col justify-center items-center gap-[5px] w-8 h-8"
           onClick={() => setOpen((o) => !o)}
@@ -43,7 +41,6 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile dropdown */}
       {open && (
         <ul className="md:hidden list-none bg-[#1a1a1a] border-t border-white/10 px-6 py-4 flex flex-col gap-4">
           {NAV_ITEMS.map(({ label, disabled, href }) => (

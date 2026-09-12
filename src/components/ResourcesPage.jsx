@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import SmartImage from './SmartImage'
+import YouTubeEmbed from './YouTubeEmbed'
 
 const navSections = [
   { id: 'surviving', label: 'Surviving a jam' },
@@ -58,14 +60,14 @@ function SideNav() {
   )
 }
 
-const games = [
-  { title: 'lineoff', href: 'https://kultisti.itch.io/lineoff', image: 'https://img.itch.zone/aW1hZ2UvMTE1OTM1MS82NzQwNDA0LmdpZg==/original/twxmU4.gif' },
+  const games = [
+  { title: 'lineoff', href: 'https://kultisti.itch.io/lineoff', image: (src => src.startsWith('http') ? `/proxy/?u=${encodeURIComponent(src)}` : src)('https://img.itch.zone/aW1hZ2UvMTE1OTM1MS82NzQwNDA0LmdpZg==/original/twxmU4.gif') },
   { title: 'Little Slime Blows Up', href: 'https://jimmyc5.itch.io/little-sl', image: 'https://img.itch.zone/aW1hZ2UvMjkxMTE5MS8xNzQxMzY5Ny5wbmc=/original/ZwnSIS.png' },
-  { title: 'KILLOVER', href: 'https://quentindelvallet.itch.io/killover', image: 'https://img.itch.zone/aW1nLzI1NDExNzAyLmdpZg==/original/rJeWTx.gif' },
+  { title: 'KILLOVER', href: 'https://quentindelvallet.itch.io/killover', image: (src => src.startsWith('http') ? `/proxy/?u=${encodeURIComponent(src)}` : src)('https://img.itch.zone/aW1nLzI1NDExNzAyLmdpZg==/original/rJeWTx.gif') },
   { title: 'Öoo', href: 'https://namatakahashi.itch.io/oo', image: 'https://img.itch.zone/aW1nLzIxNTM5MzY4LmdpZg==/original/%2FNZ%2Fhu.gif' },
   { title: 'Death Spiral', href: 'https://kindanice.itch.io/death-spiral', image: 'https://img.itch.zone/aW1hZ2UvNDcxNjkxNi8yODExOTk3Ni5wbmc=/original/XgfVdv.png' },
-  { title: 'Tetris', href: 'https://play.tetris.com/', image: 'https://www.datocms-assets.com/145957/1744284280-tetris-mobile.png?auto=format&fit=max&w=1200' },
-  { title: 'Pac-Man', href: 'https://freepacman.org/', image: 'https://freepacman.org/images/pacman-game-card.png' },
+  { title: 'Tetris', href: 'https://play.tetris.com/', image: (src => src.startsWith('http') ? `/proxy/?u=${encodeURIComponent(src)}` : src)('https://www.datocms-assets.com/145957/1744284280-tetris-mobile.png?auto=format&fit=max&w=1200') },
+  { title: 'Pac-Man', href: 'https://freepacman.org/', image: (src => src.startsWith('http') ? `/proxy/?u=${encodeURIComponent(src)}` : src)('https://freepacman.org/images/pacman-game-card.png') },
 ]
 
 const tools = [
@@ -74,21 +76,21 @@ const tools = [
     tag: 'Game engine',
     blurb: 'Free and open source engine for 2D and 3D games. Great for jams and totally free to ship with.',
     href: 'https://docs.godotengine.org/en/stable/about/introduction.html',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/Godot_icon.svg',
+    logo: (src => src.startsWith('http') ? `/proxy/?u=${encodeURIComponent(src)}` : src)('https://upload.wikimedia.org/wikipedia/commons/6/6a/Godot_icon.svg'),
   },
   {
     name: 'Blender',
     tag: '3D & animation',
     blurb: 'Model, sculpt, rig, and animate in 3D. Handles everything from assets to full cinematics.',
     href: 'https://docs.blender.org/manual/en/latest/',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/0/0c/Blender_logo_no_text.svg',
+    logo: (src => src.startsWith('http') ? `/proxy/?u=${encodeURIComponent(src)}` : src)('https://upload.wikimedia.org/wikipedia/commons/0/0c/Blender_logo_no_text.svg'),
   },
   {
     name: 'Krita',
     tag: '2D art & painting',
     blurb: 'Digital painting built for artists. Perfect for sprites, textures, and concept art.',
     href: 'https://docs.krita.org/en/user_manual.html',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/3/31/Calligra_Krita_icon.svg',
+    logo: (src => src.startsWith('http') ? `/proxy/?u=${encodeURIComponent(src)}` : src)('https://upload.wikimedia.org/wikipedia/commons/3/31/Calligra_Krita_icon.svg'),
   },
 ]
 
@@ -102,8 +104,8 @@ const designGroups = [
   {
     group: 'Tutorials & talks',
     items: [
-      { title: 'How to get ideas fast', desc: 'A practical way to come up with game jam ideas quickly.', href: 'https://www.youtube.com/watch?v=xe2X0WJgI-4', image: 'https://img.youtube.com/vi/xe2X0WJgI-4/hqdefault.jpg' },
-      { title: 'A Theory of Fun (PDF)', desc: "Raph Koster's classic early essay on the theory of fun.", href: 'https://www.theoryoffun.com/theoryoffun.pdf', image: 'https://www.theoryoffun.com/images/english-cover-2nd.jpg' },
+      { title: 'How to get ideas fast', desc: 'A practical way to come up with game jam ideas quickly.', href: 'https://www.youtube.com/watch?v=xe2X0WJgI-4', image: (src => src.startsWith('http') ? `/proxy/?u=${encodeURIComponent(src)}` : src)('https://img.youtube.com/vi/xe2X0WJgI-4/hqdefault.jpg') },
+      { title: 'A Theory of Fun (PDF)', desc: "Raph Koster's classic early essay on the theory of fun.", href: 'https://www.theoryoffun.com/theoryoffun.pdf', image: (src => src.startsWith('http') ? `/proxy/?u=${encodeURIComponent(src)}` : src)('https://www.theoryoffun.com/images/english-cover-2nd.jpg') },
       { title: 'Best games from GMTK Game Jam 2024', desc: 'A tour of standout entries from a huge game jam.', href: 'https://www.youtube.com/watch?v=gqCAeFjB8Uo', image: 'https://img.youtube.com/vi/gqCAeFjB8Uo/hqdefault.jpg' },
       { title: 'The 100 games that taught me game design', desc: 'Lessons pulled from a hundred influential games.', href: 'https://www.youtube.com/watch?v=gWNXGfXOrro', image: 'https://img.youtube.com/vi/gWNXGfXOrro/hqdefault.jpg' },
       { title: 'Best games from the Very Serious Game Jam', desc: 'Highlights and takeaways from another game jam.', href: 'https://youtu.be/qbZQign1RnM?si=CsmJjC4QbN4AC7PJ', image: 'https://img.youtube.com/vi/qbZQign1RnM/hqdefault.jpg' },
@@ -313,7 +315,7 @@ function GameCarousel() {
           rel="noreferrer"
           className="group relative block h-[440px] w-full overflow-hidden bg-[#651014] shadow-[0_8px_0_#651014] md:h-[560px]"
         >
-          <img
+          <SmartImage
             src={game.image}
             alt={game.title}
             className="h-full w-full object-cover transition-transform duration-200 group-hover:scale-105"
@@ -361,7 +363,7 @@ function AssetGallery({ assets, right }) {
 
   const thumbs = (
     <div dir={right ? 'rtl' : undefined} className="order-2 grid grid-cols-3 gap-3 sm:grid-cols-4 lg:order-1 lg:h-[520px] lg:grid-cols-3 lg:grid-rows-4 lg:gap-4">
-      {assets.map((asset, i) => (
+          {assets.map((asset, i) => (
         <button
           key={asset.href}
           type="button"
@@ -372,7 +374,7 @@ function AssetGallery({ assets, right }) {
             i === index ? 'shadow-[0_0_0_4px_#D93A44]' : ''
           }`}
         >
-          <img
+          <SmartImage
             src={asset.image}
             alt={asset.title}
             loading="lazy"
@@ -388,7 +390,7 @@ function AssetGallery({ assets, right }) {
   const preview = (
     <div className="order-1 flex flex-col gap-4 bg-white/[0.03] p-5 shadow-[0_8px_0_#651014] md:p-6 lg:order-2 lg:h-[520px]">
       <div className="flex min-h-[280px] flex-1 items-center justify-center bg-[#0d0d0d] p-4 lg:min-h-0">
-        <img
+        <SmartImage
           src={active.image}
           alt={active.title}
           className="max-h-full max-w-full object-contain"
@@ -446,13 +448,7 @@ function LearnSection({ id, title, intro, featured, groups, extraGroups = [], as
 
   const video = (
     <div className={`aspect-video w-full overflow-hidden bg-black shadow-[0_8px_0_#651014] ${right ? 'lg:order-2' : ''}`}>
-      <iframe
-        className="h-full w-full"
-        src={`https://www.youtube.com/embed/${featured.videoId}${featured.start ? `?start=${featured.start}` : ''}`}
-        title={featured.title}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      />
+      <YouTubeEmbed videoId={featured.videoId} start={featured.start} />
     </div>
   )
 
@@ -515,7 +511,7 @@ function LearnSection({ id, title, intro, featured, groups, extraGroups = [], as
                     }`}
                   >
                     <div className="aspect-video w-full overflow-hidden bg-[#0d0d0d]">
-                      <img
+                      <SmartImage
                         src={image}
                         alt={t}
                         loading="lazy"
@@ -664,7 +660,7 @@ export default function ResourcesPage() {
                   <span className="inline-flex w-fit bg-[#D93A44] px-3 py-1 font-akshar text-[13px] font-bold uppercase tracking-[0.14em] text-white">
                     {tag}
                   </span>
-                  <img
+                  <SmartImage
                     src={logo}
                     alt={`${name} logo`}
                     className="h-16 w-16 shrink-0 object-contain transition-transform duration-150 group-hover:scale-105"

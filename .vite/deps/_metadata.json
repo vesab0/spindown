@@ -1,0 +1,52 @@
+{
+  "hash": "ac25c0c6",
+  "configHash": "f607b1fd",
+  "lockfileHash": "6e84b112",
+  "browserHash": "a72f1f75",
+  "optimized": {
+    "@react-three/fiber": {
+      "src": "../../node_modules/@react-three/fiber/dist/react-three-fiber.esm.js",
+      "file": "@react-three_fiber.js",
+      "fileHash": "2fbe5586",
+      "needsInterop": false
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "490338f4",
+      "needsInterop": true
+    },
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "b50b68b9",
+      "needsInterop": true
+    },
+    "react/jsx-dev-runtime": {
+      "src": "../../node_modules/react/jsx-dev-runtime.js",
+      "file": "react_jsx-dev-runtime.js",
+      "fileHash": "5a44d750",
+      "needsInterop": true
+    },
+    "three": {
+      "src": "../../node_modules/three/build/three.module.js",
+      "file": "three.js",
+      "fileHash": "05c87a85",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "rolldown-runtime-B-1-B7_t": {
+      "file": "rolldown-runtime-B-1-B7_t.js",
+      "isDynamicEntry": false
+    },
+    "scheduler-CKa81V9t": {
+      "file": "scheduler-CKa81V9t.js",
+      "isDynamicEntry": false
+    },
+    "three.module-D3L37T2l": {
+      "file": "three.module-D3L37T2l.js",
+      "isDynamicEntry": false
+    }
+  }
+}
