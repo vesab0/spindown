@@ -156,9 +156,9 @@ export default function GamesPage() {
   return (
     <main className="bg-[#1a1a1a] px-5 py-14 md:px-10 md:py-16">
       <div className="mx-auto max-w-7xl text-white">
-        <p className="font-akshar text-[18px] font-bold uppercase tracking-[0.18em] text-[#60BAFF] md:text-[22px]">Game Jam</p>
+        <p className="font-akshar text-[18px] font-bold uppercase tracking-[0.18em] text-[#60BAFF] md:text-[22px]">Spindown Game Jam</p>
         <h1 className="font-akshar text-[56px] font-bold leading-[0.92] md:text-[72px]">Game Jam Games</h1>
-        <p className="mt-3 max-w-3xl font-akshar text-[20px] leading-tight text-white/70 md:text-[24px]">Games made during the jam — click Play to try them in your browser.</p>
+        <p className="mt-3 max-w-3xl font-akshar text-[20px] leading-tight text-white/70 md:text-[24px]">The 6 amazing games created during the Spindown Game Jam.</p>
 
         <div className="mt-10 space-y-14">
           {GAMES.map((game, gIndex) => {
