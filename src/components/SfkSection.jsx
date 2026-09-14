@@ -24,7 +24,7 @@ export default function SfkSection() {
           </p>
           <div className="flex flex-col gap-4 pt-2">
             <LabelValue label="Date" value="October 1 – 3, 2026 · Thu – Sat" />
-            <LabelValue label="Venue" value="Salla 1 Teatri" />
+            <LabelValue label="Venue" value="Salla e Kuqe - Pallati i Rinise" />
           </div>
         </div>
 
