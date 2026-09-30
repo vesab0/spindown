@@ -2,7 +2,11 @@ export const GAMES = [
   {
     id: 'sola',
     title: 'Sola',
-    desc: 'A light hearted puzzle game where you play as an ice cube trying to find your way to the sola cup. You melt with every step you take so youre constantly running out of moves and must be careful when traversing the dungeon. This game was chosen as winner by the jurry not only for the fun gameplay and atmosphere but also for variety in levels, game mechanics, and the flexibility of their level editor that allowed for a wide range of level designs.',
+    teamName: 'The PAWGS',
+    desc: [
+      { paragraph: 'A light hearted puzzle game where you play as an ice cube trying to find your way to the sola cup. You melt with every step you take so youre constantly running out of moves and must be careful when traversing the dungeon.' },
+      { paragraph: 'This game was chosen as winner by the jurry not only for the fun gameplay and atmosphere but also for variety in levels, game mechanics, and the flexibility of their level editor that allowed for a wide range of level designs.' },
+    ],
     folder: '/games/Sola',
     entry: '/games/Sola/index.html',
     githubLink: 'https://github.com/grapefizz/sola',
@@ -20,10 +24,14 @@ export const GAMES = [
   {
     id: 'migi',
     title: 'Mingi',
-    desc: 'The party has run out of cigarettes, and worse than that youve been chosen to go get more. So, armed with the last few cigs from the party you venture out into the night. W - forward; A/D - Balancing; F - answer phone; ',
+    teamName: 'Mermelada',
+    desc: [
+      { paragraph: 'The party has run out of cigarettes, and worse than that youve been chosen to go get more. So, armed with the last few cigs from the party you venture out into the night.' },
+      { paragraph: 'W - forward; A/D - Balancing; F - answer phone.' },
+    ],
     folder: '/games/migi',
     entry: '/games/migi/Mingiweb.html',
-    githubLink: 'https://github.com', 
+    githubLink: 'https://github.com/Art-Bekolli/game-jam-cigarette', 
     galleryFolder: '/screenshots/migi/',
     communityFavorite: true,
     teamMembers: [
@@ -37,10 +45,13 @@ export const GAMES = [
   {
     id: 'night-terror',
     title: 'Night Terror',
-    desc: 'A thrilling horror game that challenges your nerves. You are a small little creature running out of a haunted mansion. Navigate through dark corridors and solve puzzles to escape the nightmare. How long can you survive?',
+    teamName: 'Proton',
+    desc: [
+      { paragraph: 'A thrilling horror game that challenges your nerves. You are a small little creature running out of a haunted mansion.' },
+      { paragraph: 'Navigate through dark corridors and solve puzzles to escape the nightmare. How long can you survive?' },
+    ],
     folder: '/games/Night Terror',
     entry: '/games/Night Terror/NightTerror.html',
-    githubLink: 'https://github.com',
     galleryFolder: '/screenshots/nightterror/',
     teamMembers: [
       { name: 'Hana Mustafa', role: 'Artist' },
@@ -51,7 +62,11 @@ export const GAMES = [
   {
     id: 'pantsdown',
     title: 'PantsDown',
-    desc: 'The games premise is "running out of pants!" where the main characters (players) pants rapidly "run out" and he tries to go home while avoiding the gaze (using arrow keys) of others so as to avoid embarrassment/losing the game. The game is comprised of 3 levels, all three featuring different landscapes, level design, NPC placement and Item placements.',
+    teamName: 'Okat',
+    desc: [
+      { paragraph: 'The games premise is "running out of pants!" where the main characters (players) pants rapidly "run out" and he tries to go home while avoiding the gaze (using arrow keys) of others so as to avoid embarrassment/losing the game.' },
+      { paragraph: 'The game is comprised of 3 levels, all three featuring different landscapes, level design, NPC placement and Item placements.' },
+    ],
     folder: '/games/PantsDown-WebBuild',
     entry: '/games/PantsDown-WebBuild/index.html',
     githubLink: 'https://github.com/Liburn-Krasniqi/PantsDown',
@@ -64,14 +79,18 @@ export const GAMES = [
       { name: 'Robert Pirra', role: 'Programer' },
     ],
   },
-    {
+  {
     id: 'barileva',
     title: 'Barileva 2005',
-    desc: 'On a cold night when the lights are low our hero Trim has given the unfortunate task of buying his suspitios looking grandma a new pack of cigarettes. So he ventures into the night with an old sheke recharging flashlight avoiding that which lurks in the dark. But dont let the fear capture your mind for his jurney ends with a final rewind',
+    teamName: 'Kpurdhat',
+    desc: [
+      { paragraph: 'On a cold night when the lights are low our hero Trim has given the unfortunate task of buying his suspitios looking grandma a new pack of cigarettes.' },
+      { paragraph: 'So he ventures into the night with an old sheke recharging flashlight avoiding that which lurks in the dark. But dont let the fear capture your mind for his jurney ends with a final rewind.' },
+    ],
     folder: '/games/Barileva-2005',
     entry: '/games/Barileva2005WebGl/index.html',
-    githubLink: 'https://github.com',
     galleryFolder: '/screenshots/barileva/',
+    stage: { width: 1440, height: 1080 },
     teamMembers: [
       { name: 'Agon Ahmetaj', role: 'Programmer' },
       { name: 'Elsa Talla', role: 'Artist' },
@@ -83,10 +102,15 @@ export const GAMES = [
   {
     id: 'grocerun',
     title: 'Grocerun',
-    desc: 'Get ready for the ultimate supermarket sprint! GROCERUN is a high-speed endless runner where your mission is to smash through your shopping list and grab the right fruits before the clock runs out. Stay sharp and watch your step! If you crash into a freezer, it will completely run on ice!To play: ARROW KEYS to move the player left and rightSPACE BAR to rearrange your inventory.IMPORTANT:  Inventory management is everything! If your cart is full when you grab a new item, whatever is sitting at the bottom gets tossed out. Keep tapping that SPACE BAR to sort your stash and make sure it perfectly matches your shopping list!',
+    teamName: 'Story Lab',
+    desc: [
+      { paragraph: 'Get ready for the ultimate supermarket sprint! GROCERUN is a high-speed endless runner where your mission is to smash through your shopping list and grab the right fruits before the clock runs out.' },
+      { paragraph: 'Stay sharp and watch your step! If you crash into a freezer, it will completely run on ice!' },
+      { paragraph: 'To play: ARROW KEYS to move the player left and right, SPACE BAR to rearrange your inventory.' },
+      { paragraph: 'IMPORTANT: Inventory management is everything! If your cart is full when you grab a new item, whatever is sitting at the bottom gets tossed out. Keep tapping that SPACE BAR to sort your stash and make sure it perfectly matches your shopping list!' },
+    ],
     folder: '/games/Grocerun',
     entry: '/games/grocerun/index.html',
-    githubLink: 'https://github.com',
     galleryFolder: '/screenshots/grocerun/',
     teamMembers: [
       { name: 'Ermir Suldashi', role: 'Programmer' },

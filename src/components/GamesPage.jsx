@@ -23,6 +23,22 @@ function PlaceholderImg({ text, w = 1200, h = 700 }) {
   return <img src={src} alt={text} className="h-full w-full object-cover" />
 }
 
+function GameDescription({ desc }) {
+  const paragraphs = Array.isArray(desc)
+    ? desc.map((item) => (typeof item === 'string' ? item : item?.paragraph))
+    : [desc]
+
+  return (
+    <div className="mt-3 space-y-2">
+      {paragraphs.filter(Boolean).map((text, i) => (
+        <p key={i} className="font-akshar text-[16px] leading-snug text-white/70">
+          {text}
+        </p>
+      ))}
+    </div>
+  )
+}
+
 function FullscreenIcon({ exit = false }) {
   return (
     <svg
@@ -62,6 +78,7 @@ export default function GamesPage() {
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [controlsVisible, setControlsVisible] = useState(true)
   const [isTouchDevice, setIsTouchDevice] = useState(false)
+  const [modalSize, setModalSize] = useState({ width: 0, height: 0 })
   const controlsTimerRef = useRef(null)
   const exitingFullscreenRef = useRef(false)
   const gameModalRef = useRef(null)
@@ -162,9 +179,27 @@ export default function GamesPage() {
     }
   }, [openGame])
 
+  useEffect(() => {
+    const el = gameModalRef.current
+    if (!openGame || !el) return
+    const observer = new ResizeObserver(([entry]) => {
+      const { width, height } = entry.contentRect
+      setModalSize({ width, height })
+    })
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [openGame])
+
   const openPlayer = (game) => {
     setOpenGame(game)
   }
+
+  const stage = openGame?.stage
+  const playerAspect = stage ? `${stage.width} / ${stage.height}` : '16 / 9'
+  const stageScale =
+    stage && modalSize.width > 0 && modalSize.height > 0
+      ? Math.min(modalSize.width / stage.width, modalSize.height / stage.height)
+      : 1
 
   return (
     <main className="bg-[#1a1a1a] px-5 py-14 md:px-10 md:py-16">
@@ -179,11 +214,15 @@ export default function GamesPage() {
             const current = selected[gIndex] || 0
             const setThumb = (i) => setSelected((prev) => prev.map((v, idx) => (idx === gIndex ? i : v)))
             const isWinner = game.isWinner
+            const gameAspect = game.stage ? `${game.stage.width} / ${game.stage.height}` : '16 / 9'
 
             return (
               <div key={game.id} className={`p-4 grid gap-6 sm:p-6 ${isWinner ? 'bg-white/[0.05] border border-white/10' : 'bg-white/[0.03]'} ${isWinner ? 'md:grid-cols-1' : 'md:grid-cols-[1.7fr_1fr]'}`}>
                 <div className="flex flex-col gap-4">
-                  <div className="relative bg-[#0d0d0d] shadow-[0_8px_0_#651014] overflow-hidden min-h-[200px] sm:min-h-[260px] md:min-h-[340px]">
+                  <div
+                    className="relative w-full bg-[#0d0d0d] shadow-[0_8px_0_#651014] overflow-hidden"
+                    style={{ aspectRatio: gameAspect }}
+                  >
                     <div className="absolute left-3 top-1/2 z-10 -translate-y-1/2">
                       <button
                         type="button"
@@ -206,7 +245,7 @@ export default function GamesPage() {
                       </button>
                     </div>
 
-                    <div className="w-full aspect-video">
+                    <div className="h-full w-full">
                       <Gallery item={gallery[current]} w={1200} h={675} />
                     </div>
                   </div>
@@ -217,9 +256,10 @@ export default function GamesPage() {
                         key={t}
                         type="button"
                         onClick={() => setThumb(i)}
-                        className={`h-16 w-24 overflow-hidden bg-[#0d0d0d] transition-transform hover:-translate-y-0.5 md:h-20 md:w-28 ${i === current ? 'ring-4 ring-[#D93A44]' : ''}`}
+                        className={`w-24 shrink-0 overflow-hidden bg-[#0d0d0d] transition-transform hover:-translate-y-0.5 md:w-32 ${i === current ? 'ring-4 ring-[#D93A44]' : ''}`}
+                        style={{ aspectRatio: gameAspect }}
                       >
-                        <Gallery item={t} w={400} h={240} />
+                        <Gallery item={t} w={400} h={225} />
                       </button>
                     ))}
                   </div>
@@ -238,7 +278,7 @@ export default function GamesPage() {
                       <p className="mt-3 font-akshar text-[16px] font-semibold leading-snug text-white">{game.winnerReason}</p>
                     )}
                     
-                    <p className="mt-3 font-akshar text-[16px] leading-snug text-white/70">{game.desc}</p>
+                    <GameDescription desc={game.desc} />
 
                     {game.communityFavorite && (
                       <div className="mt-4 flex items-center gap-2">
@@ -249,7 +289,9 @@ export default function GamesPage() {
                     )}
 
                     <div className="mt-6">
-                      <p className="font-akshar text-[13px] font-bold uppercase tracking-[0.14em] text-white/60 mb-3">Team</p>
+                      <p className="font-akshar text-[13px] font-bold uppercase tracking-[0.14em] text-white/60 mb-3">
+                        Team{game.teamName ? <span className="text-[#60BAFF]">  {game.teamName}</span> : null}
+                      </p>
                       <div className="space-y-2">
                         {game.teamMembers.map((member) => (
                           <p key={member.name} className="font-akshar text-[14px] text-white/80">
@@ -271,14 +313,16 @@ export default function GamesPage() {
                     >
                       Play
                     </button>
-                    <a
-                      href={game.githubLink}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="font-akshar text-[15px] text-white/70 underline"
-                    >
-                      View GitHub ↗
-                    </a>
+                    {game.githubLink && (
+                      <a
+                        href={game.githubLink}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="font-akshar text-[15px] text-white/70 underline"
+                      >
+                        View GitHub ↗
+                      </a>
+                    )}
                   </div>
                   {isTouchDevice && (
                     <p className="mt-3 font-akshar text-[14px] leading-snug text-white/60">
@@ -299,13 +343,14 @@ export default function GamesPage() {
         >
           <div 
             ref={gameModalRef}
-            className={`relative mx-auto overflow-hidden ${isFullscreen ? 'h-full w-full max-w-none' : 'w-full max-w-5xl'} bg-[#0d0d0d] shadow-[0_12px_0_#651014]`}
+            className={`relative mx-auto ${isFullscreen ? 'h-full w-full max-w-none' : 'w-full max-w-5xl max-h-[calc(85vh-48px)]'}`}
+            style={isFullscreen ? undefined : { aspectRatio: playerAspect }}
             onClick={(e) => e.stopPropagation()}
             onMouseMove={wakeControls}
             onMouseEnter={wakeControls}
           >
             <div
-              className={`absolute right-3 top-3 z-20 flex items-center gap-2 transition-opacity duration-200 ${isFullscreen && !controlsVisible ? 'pointer-events-none opacity-0' : 'opacity-100'}`}
+              className={`absolute bottom-full right-0 z-20 mb-3 flex items-center gap-2 transition-opacity duration-200 ${isFullscreen && !controlsVisible ? 'pointer-events-none opacity-0' : 'opacity-100'}`}
             >
               <button
                 type="button"
@@ -325,19 +370,39 @@ export default function GamesPage() {
               </button>
             </div>
 
-            {openGame.openedExternally ? (
-              <div className="p-6">
-                <h3 className="font-akshar text-[20px] font-bold text-white">Opened in a new tab</h3>
-                <p className="mt-2 text-white/75">This browser tab is not cross-origin isolated, which prevents SharedArrayBuffer from being available inside an embedded iframe. The game was opened in a new tab to run correctly. To enable in-page play, ensure the site is served with COOP/COEP headers and that `window.crossOriginIsolated` is true in the top-level page.</p>
-                <p className="mt-3 text-white/70">Quick checks: open DevTools in the app and run <code>window.crossOriginIsolated</code> (should be <code>true</code>), and in the game frame run <code>typeof SharedArrayBuffer</code>.</p>
-              </div>
+            <div className="absolute inset-0 overflow-hidden bg-[#0d0d0d] shadow-[0_12px_0_#651014]">
+              {openGame.openedExternally ? (
+                <div className="p-6">
+                  <h3 className="font-akshar text-[20px] font-bold text-white">Opened in a new tab</h3>
+                  <p className="mt-2 text-white/75">This browser tab is not cross-origin isolated, which prevents SharedArrayBuffer from being available inside an embedded iframe. The game was opened in a new tab to run correctly. To enable in-page play, ensure the site is served with COOP/COEP headers and that `window.crossOriginIsolated` is true in the top-level page.</p>
+                  <p className="mt-3 text-white/70">Quick checks: open DevTools in the app and run <code>window.crossOriginIsolated</code> (should be <code>true</code>), and in the game frame run <code>typeof SharedArrayBuffer</code>.</p>
+                </div>
+                ) : stage ? (
+                <div
+                  className="absolute left-1/2 top-1/2"
+                  style={{
+                    width: stage.width,
+                    height: stage.height,
+                    transform: `translate(-50%, -50%) scale(${stageScale})`,
+                    transformOrigin: 'center',
+                  }}
+                >
+                  <iframe
+                    title={openGame.title}
+                    src={encodeURI(openGame.entry)}
+                    scrolling="no"
+                    className="h-full w-full border-0 bg-black"
+                  />
+                </div>
               ) : (
-              <iframe
-                title={openGame.title}
-                src={encodeURI(openGame.entry)}
-                className={`${isFullscreen ? 'h-full w-full' : 'h-[70vh] w-full'} bg-black`}
-              />
-            )}
+                <iframe
+                  title={openGame.title}
+                  src={encodeURI(openGame.entry)}
+                  scrolling="no"
+                  className="absolute inset-0 h-full w-full border-0 bg-black"
+                />
+              )}
+            </div>
           </div>
         </div>
       )}
