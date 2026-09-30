@@ -30,7 +30,7 @@ export const GAMES = [
       { paragraph: 'W - forward; A/D - Balancing; F - answer phone.' },
     ],
     folder: '/games/migi',
-    entry: '/games/migi/Mingiweb.html',
+    entry: '/games/migi2/migi2.html',
     githubLink: 'https://github.com/Art-Bekolli/game-jam-cigarette', 
     galleryFolder: '/screenshots/migi/',
     communityFavorite: true,

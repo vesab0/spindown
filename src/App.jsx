@@ -7,16 +7,19 @@ import IntroCarousel from './components/IntroCarousel'
 import SfkSection from './components/SfkSection'
 import GameJamSection from './components/GameJamSection'
 import WhatsNext from './components/WhatsNext'
+import DiceShowcase from './components/DiceShowcase'
 import Footer from './components/Footer'
 
 function App() {
   const [isResourcesPage, setIsResourcesPage] = useState(() => window.location.hash.startsWith('#resources'))
   const [isGamesPage, setIsGamesPage] = useState(() => window.location.hash.startsWith('#games'))
+  const [isDicePage, setIsDicePage] = useState(() => window.location.hash.startsWith('#dice'))
 
   useEffect(() => {
     const updatePage = () => {
       setIsResourcesPage(window.location.hash.startsWith('#resources'))
       setIsGamesPage(window.location.hash.startsWith('#games'))
+      setIsDicePage(window.location.hash.startsWith('#dice'))
     }
 
     window.addEventListener('hashchange', updatePage)
@@ -25,23 +28,29 @@ function App() {
 
   return (
     <div className="min-h-screen">
-      <Navbar />
-      {isResourcesPage ? (
-        <Suspense fallback={<div className="bg-[#1a1a1a] min-h-screen" />}>
-          <ResourcesPage />
-        </Suspense>
-      ) : isGamesPage ? (
-        <GamesPage />
+      {isDicePage ? (
+        <DiceShowcase />
       ) : (
         <>
-          <Hero />
-          <IntroCarousel />
-          <SfkSection />
-          <GameJamSection />
-          <WhatsNext />
+          <Navbar />
+          {isResourcesPage ? (
+            <Suspense fallback={<div className="bg-[#1a1a1a] min-h-screen" />}>
+              <ResourcesPage />
+            </Suspense>
+          ) : isGamesPage ? (
+            <GamesPage />
+          ) : (
+            <>
+              <Hero />
+              <IntroCarousel />
+              <SfkSection />
+              <GameJamSection />
+              <WhatsNext />
+            </>
+          )}
+          <Footer />
         </>
       )}
-      <Footer />
     </div>
   )
 }

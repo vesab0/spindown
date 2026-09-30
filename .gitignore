@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Generated videos and their capture scripts
+*.mp4
+scripts/capture-dice-video*.mjs
+
+# Chrome binary (too large for GitHub)
+chrome/
